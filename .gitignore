@@ -1,0 +1,21 @@
+# Personal data — never commit these to a public repo
+personal-professional-profile/profile/personal-info.yaml
+personal-professional-profile/career/pipeline.md
+personal-professional-profile/career/job-search-preferences.md
+personal-professional-profile/interview-prep/story-bank/
+cv/
+journal/sessions/
+journal/therapy/
+journal/decisions/
+journal/reviews/
+journal/goal-reviews/
+journal/patterns.md
+.claude/memory/
+
+# OS
+.DS_Store
+*.swp
+
+# Environment
+.env
+.env.local
