@@ -58,6 +58,8 @@ See [docs/skill-map.md](docs/skill-map.md) for a table of every skill, its role,
 
 See [examples/CLAUDE-starter.md](examples/CLAUDE-starter.md) for a minimal CLAUDE.md to get started.
 
+See [automation/](automation/) for the optional scheduler — a queue script per skill plus a watcher that runs `/horizon-scan`, `/weekly-review`, `/goal-review`, and `/calibrate` on their intended cadence with no one at the keyboard.
+
 ---
 
 ## Built with

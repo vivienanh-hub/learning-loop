@@ -55,7 +55,8 @@ your-workspace/
 │   ├── reviews/
 │   ├── horizon-scans/
 │   ├── decisions/
-│   └── goal-reviews/
+│   ├── goal-reviews/
+│   └── system-health/
 ├── system/
 │   └── feedback-loop.md
 └── cv/
@@ -115,6 +116,12 @@ Or sit an exam on something you already know:
 ```
 /exam jobs-to-be-done
 ```
+
+### 7. Optional: automate the cadence
+
+The skills above run when you type them. `/horizon-scan`, `/weekly-review`, `/goal-review`, and `/calibrate` are meant to run on a schedule — monthly, weekly, quarterly, monthly — and nothing enforces that unless you remember to.
+
+[automation/](automation/) has a queue script per skill plus a watcher process: a cron job or LaunchAgent creates a labeled GitHub issue on schedule, the watcher picks it up and runs the skill headlessly, and the result gets posted and committed with no one at the keyboard. See [automation/README.md](automation/README.md) for setup.
 
 ---
 
