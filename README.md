@@ -64,6 +64,8 @@ See [examples/exam-transcript.md](examples/exam-transcript.md) and [examples/hor
 
 See [issue #1](https://github.com/vivienanh-hub/learning-loop/issues/1) for what a session actually looks like as a GitHub issue — labels, title, and the comment thread as it progresses from question to verdict. (Fabricated example, not a real session.)
 
+See [issue #2](https://github.com/vivienanh-hub/learning-loop/issues/2) for a weekly review that promotes a one-off note into a tracked pattern. (Fabricated example, not a real review.)
+
 See [automation/](automation/) for the optional scheduler — a queue script per skill plus a watcher that runs `/horizon-scan`, `/weekly-review`, `/goal-review`, and `/calibrate` on their intended cadence with no one at the keyboard.
 
 ---
