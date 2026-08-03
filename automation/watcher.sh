@@ -16,7 +16,7 @@ POLL_INTERVAL=30  # seconds between polls
 # Lives under $HOME (not /tmp) since some OSes periodically sweep /tmp
 # entries that haven't been accessed in a few days, which would silently
 # delete the lock out from under a long-running process.
-LOCKDIR="$HOME/.school-of-one-watcher.lock.d"
+LOCKDIR="$HOME/.learning-loop-watcher.lock.d"
 LOCKPID="$LOCKDIR/pid"
 
 if [ -d "$LOCKDIR" ]; then

@@ -1,12 +1,12 @@
 # Memory Setup
 
-School of One builds a persistent memory of who you are over time. This file explains the memory system and what you need to set up.
+Learning Loop builds a persistent memory of who you are over time. This file explains the memory system and what you need to set up.
 
 ---
 
 ## How memory works
 
-Claude Code has no persistent memory between conversations by default. School of One solves this with a file-based memory system: structured Markdown files in `.claude/memory/` that are read at the start of relevant sessions.
+Claude Code has no persistent memory between conversations by default. Learning Loop solves this with a file-based memory system: structured Markdown files in `.claude/memory/` that are read at the start of relevant sessions.
 
 The skills automatically read these files — you don't need to reference them explicitly.
 

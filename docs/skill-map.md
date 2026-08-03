@@ -1,10 +1,10 @@
 # Skill Map
 
-A single-table view of every skill in School of One — what it does, its role in the system, and when to use it.
+A single-table view of every skill in Learning Loop — what it does, its role in the system, and when to use it.
 
-| Skill | Role in the school | When to use |
+| Skill | Role in the loop | When to use |
 |---|---|---|
-| `/sheldon` | Head of school — brainstorm facilitator, inquiry engine, router | When you have an idea to pressure-test, a question to explore, or you're not sure which skill to use |
+| `/sheldon` | Front door — brainstorm facilitator, inquiry engine, router | When you have an idea to pressure-test, a question to explore, or you're not sure which skill to use |
 | `/snape` | Life coach — career accountability, goal alignment, career strategy | When you want a mentor session on career decisions, job search strategy, or goal direction |
 | `/learn` | Teacher — structured lesson on a topic, chunk by chunk, with Q&A | When you want to learn something new systematically |
 | `/exam` | Examiner — Socratic test of what you actually know | When you want to verify retention, not just study |

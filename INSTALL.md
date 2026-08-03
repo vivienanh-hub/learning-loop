@@ -15,7 +15,7 @@
 Copy the `.claude/commands/` folder from this repo into your workspace repo:
 
 ```bash
-cp -r school-of-one/.claude/commands/ your-workspace/.claude/commands/
+cp -r learning-loop/.claude/commands/ your-workspace/.claude/commands/
 ```
 
 Or fork this repo and work directly inside it.

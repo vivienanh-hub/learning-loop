@@ -1,6 +1,6 @@
 # Automation
 
-Without this layer, every skill in School of One is something you have to remember to run. `/horizon-scan` monthly, `/weekly-review` weekly, `/goal-review` quarterly, `/calibrate` monthly — none of that happens unless you open Claude Code and type the command. This folder is the forcing function: a scheduler creates a GitHub issue on a cadence, and a watcher process picks it up and runs the skill headlessly, with no one at the keyboard.
+Without this layer, every skill in Learning Loop is something you have to remember to run. `/horizon-scan` monthly, `/weekly-review` weekly, `/goal-review` quarterly, `/calibrate` monthly — none of that happens unless you open Claude Code and type the command. This folder is the forcing function: a scheduler creates a GitHub issue on a cadence, and a watcher process picks it up and runs the skill headlessly, with no one at the keyboard.
 
 ---
 
@@ -66,10 +66,10 @@ Leave it running (a terminal tab, a `screen`/`tmux` session, or wrapped in its o
 
 ```cron
 # m h dom mon dow   command
-0 8 * * 1            /path/to/your/workspace/automation/queue-weekly-review.sh   >> ~/school-of-one-cron.log 2>&1
-0 8 1 * *             /path/to/your/workspace/automation/queue-horizon-scan.sh    >> ~/school-of-one-cron.log 2>&1
-0 8 1 * *             /path/to/your/workspace/automation/queue-calibrate.sh       >> ~/school-of-one-cron.log 2>&1
-0 8 1 1,4,7,10 *      /path/to/your/workspace/automation/queue-goal-review.sh     >> ~/school-of-one-cron.log 2>&1
+0 8 * * 1            /path/to/your/workspace/automation/queue-weekly-review.sh   >> ~/learning-loop-cron.log 2>&1
+0 8 1 * *             /path/to/your/workspace/automation/queue-horizon-scan.sh    >> ~/learning-loop-cron.log 2>&1
+0 8 1 * *             /path/to/your/workspace/automation/queue-calibrate.sh       >> ~/learning-loop-cron.log 2>&1
+0 8 1 1,4,7,10 *      /path/to/your/workspace/automation/queue-goal-review.sh     >> ~/learning-loop-cron.log 2>&1
 ```
 
 That's: weekly review every Monday 8am, horizon scan + calibrate on the 1st of each month, goal review on the 1st of each quarter. Edit with `crontab -e`.
