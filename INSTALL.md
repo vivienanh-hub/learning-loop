@@ -20,13 +20,27 @@ cp -r learning-loop/.claude/commands/ your-workspace/.claude/commands/
 
 Or fork this repo and work directly inside it.
 
-### 2. Set up your CLAUDE.md
+### 2. Point the skills at your repo
+
+The skills shell out to `gh` directly, and they ship with a placeholder repo. Replace it in the copied files:
+
+```bash
+cd your-workspace/.claude/commands
+sed -i '' 's|YOUR_GITHUB_USERNAME/YOUR_REPO|your-username/your-repo|g' *.md   # macOS
+sed -i    's|YOUR_GITHUB_USERNAME/YOUR_REPO|your-username/your-repo|g' *.md   # Linux
+```
+
+Nine of the twelve skills reference the repo this way — `/sheldon`, `/snape`, `/learn`, `/exam`, `/weekly-review`, `/calibrate`, `/interview`, `/cv-job-match`, `/portfolio-capture`. Skip this step and each one fails on its first `gh` call. (`/context-audit`, `/goal-review`, and `/horizon-scan` are file-only and need no change.)
+
+The automation scripts carry the same placeholder plus two more — see [automation/README.md](automation/README.md) step 1.
+
+### 3. Set up your CLAUDE.md
 
 Copy [examples/CLAUDE-starter.md](examples/CLAUDE-starter.md) to your repo root as `CLAUDE.md` and fill in the fields marked `[YOUR_...]`.
 
 This file tells Claude what kind of learner you are, where your files live, and how to behave across sessions.
 
-### 3. Create the folder structure
+### 4. Create the folder structure
 
 The skills expect this layout (create folders, leave files empty for now):
 
@@ -63,7 +77,7 @@ your-workspace/
     └── your_cv.tex        ← or .pdf, .md — update the path in cv-job-match.md and interview.md
 ```
 
-### 4. Fill in the key files
+### 5. Fill in the key files
 
 **`system/feedback-loop.md`** — your goal cascade. The skills read this constantly to keep advice anchored. Minimum structure:
 
@@ -84,7 +98,7 @@ your-workspace/
 
 **`.claude/memory/user_profile.md`** — how you learn, your background, your working style. Start with what you know about yourself and let the system refine it over time.
 
-### 5. Create GitHub issue labels
+### 6. Create GitHub issue labels
 
 The skills use GitHub issue labels for workflow state. Create these in your repo:
 
@@ -92,12 +106,14 @@ The skills use GitHub issue labels for workflow state. Create these in your repo
 gh label create "agent:status:todo" --color "#e11d48" --repo YOUR_GITHUB_USERNAME/YOUR_REPO
 gh label create "agent:status:doing" --color "#f97316" --repo YOUR_GITHUB_USERNAME/YOUR_REPO
 gh label create "agent:status:done" --color "#16a34a" --repo YOUR_GITHUB_USERNAME/YOUR_REPO
+gh label create "agent:status:failed" --color "#7f1d1d" --repo YOUR_GITHUB_USERNAME/YOUR_REPO
 gh label create "model:sonnet" --color "#6366f1" --repo YOUR_GITHUB_USERNAME/YOUR_REPO
 gh label create "model:opus" --color "#8b5cf6" --repo YOUR_GITHUB_USERNAME/YOUR_REPO
+gh label create "model:haiku" --color "#22d3ee" --repo YOUR_GITHUB_USERNAME/YOUR_REPO
 gh label create "machine:yourname" --color "#94a3b8" --repo YOUR_GITHUB_USERNAME/YOUR_REPO
 ```
 
-### 6. Run your first session
+### 7. Run your first session
 
 Open Claude Code in your workspace and try:
 
@@ -117,7 +133,7 @@ Or sit an exam on something you already know:
 /exam jobs-to-be-done
 ```
 
-### 7. Optional: automate the cadence
+### 8. Optional: automate the cadence
 
 The skills above run when you type them. `/horizon-scan`, `/weekly-review`, `/goal-review`, and `/calibrate` are meant to run on a schedule — monthly, weekly, quarterly, monthly — and nothing enforces that unless you remember to.
 

@@ -10,7 +10,9 @@ Personal workspace for a [YOUR ROLE]. Uses GitHub Issues as a task queue and Cla
 
 Domain-specific rules and context live in modular memory files at `.claude/memory/`. Check `.claude/memory/MEMORY.md` for the index before starting any task.
 
-**IMPORTANT — memory write path:** Write all memory files to `.claude/memory/` in this repo. This repo path is the source of truth and is version-controlled.
+**IMPORTANT — memory write path:** Write all memory files to `.claude/memory/` in this repo, not to any global Claude Code memory location. This repo path is the source of truth.
+
+Note: the shipped `.gitignore` excludes `.claude/memory/`, since memory holds personal detail and this template assumes a public repo. Your memory persists on disk either way. If your workspace repo is private and you want memory backed up and synced across machines, drop that line from `.gitignore`.
 
 ## Self-improving rules
 

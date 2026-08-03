@@ -49,7 +49,7 @@ Set them once per script, or refactor into a shared config file if you'd rather 
 
 ### 2. Create the GitHub labels (if you haven't already)
 
-Same labels as [INSTALL.md](../INSTALL.md) step 5 — `agent:status:todo`, `agent:status:doing`, `agent:status:done`, `agent:status:failed`, `model:sonnet`, `machine:yourname`.
+Same labels as [INSTALL.md](../INSTALL.md) step 6 — `agent:status:todo`, `agent:status:doing`, `agent:status:done`, `agent:status:failed`, `model:sonnet`, `machine:yourname`.
 
 ### 3. Start the watcher
 

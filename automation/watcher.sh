@@ -57,9 +57,9 @@ $ISSUE_CONTENT"
     --jq '[.labels[].name] | map(select(startswith("model:"))) | first')
 
   case "$MODEL_LABEL" in
-    "model:opus")  CLAUDE_MODEL="claude-opus-4-8" ;;
-    "model:haiku") CLAUDE_MODEL="claude-haiku-4-5-20251001" ;;
-    *)             CLAUDE_MODEL="claude-sonnet-4-6" ;;
+    "model:opus")  CLAUDE_MODEL="claude-opus-5" ;;
+    "model:haiku") CLAUDE_MODEL="claude-haiku-4-5" ;;
+    *)             CLAUDE_MODEL="claude-sonnet-5" ;;
   esac
 
   echo "[$(date '+%H:%M:%S')] Running issue #$ISSUE_NUM on $CLAUDE_MODEL"

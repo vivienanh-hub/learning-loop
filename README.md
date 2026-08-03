@@ -58,6 +58,10 @@ See [docs/skill-map.md](docs/skill-map.md) for a table of every skill, its role,
 
 See [examples/CLAUDE-starter.md](examples/CLAUDE-starter.md) for a minimal CLAUDE.md to get started.
 
+See [docs/memory-setup.md](docs/memory-setup.md) for the memory layer — what the skills read, and what you need to create.
+
+See [examples/exam-transcript.md](examples/exam-transcript.md) and [examples/horizon-scan-sample.md](examples/horizon-scan-sample.md) for what the skills actually produce.
+
 See [automation/](automation/) for the optional scheduler — a queue script per skill plus a watcher that runs `/horizon-scan`, `/weekly-review`, `/goal-review`, and `/calibrate` on their intended cadence with no one at the keyboard.
 
 ---
