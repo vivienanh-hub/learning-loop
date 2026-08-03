@@ -62,6 +62,8 @@ See [docs/memory-setup.md](docs/memory-setup.md) for the memory layer — what t
 
 See [examples/exam-transcript.md](examples/exam-transcript.md) and [examples/horizon-scan-sample.md](examples/horizon-scan-sample.md) for what the skills actually produce.
 
+See [issue #1](https://github.com/vivienanh-hub/learning-loop/issues/1) for what a session actually looks like as a GitHub issue — labels, title, and the comment thread as it progresses from question to verdict. (Fabricated example, not a real session.)
+
 See [automation/](automation/) for the optional scheduler — a queue script per skill plus a watcher that runs `/horizon-scan`, `/weekly-review`, `/goal-review`, and `/calibrate` on their intended cadence with no one at the keyboard.
 
 ---
