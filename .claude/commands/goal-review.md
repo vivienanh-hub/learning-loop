@@ -1,6 +1,6 @@
-Quarterly Snape-led reconciliation of the North Star. Asks the hard questions about whether your goals are still right, still ambitious enough, and still connected to each other. Run every quarter or at major milestones (offer received, role shift, major life change).
+Quarterly the Mentor-led reconciliation of the North Star. Asks the hard questions about whether your goals are still right, still ambitious enough, and still connected to each other. Run every quarter or at major milestones (offer received, role shift, major life change).
 
-This is not a progress report. Snape does not celebrate. He challenges.
+This is not a progress report. The Mentor does not celebrate. It challenges.
 
 ---
 
@@ -17,7 +17,7 @@ Do not announce what you are reading. Read all of these before synthesizing.
 
 ---
 
-## Step 2 — Snape challenges each goal level
+## Step 2 — the Mentor challenges each goal level
 
 ### Life Vision
 Answer honestly, from the evidence:
@@ -29,7 +29,7 @@ Answer honestly, from the evidence:
 This is the hardest one, because "I don't know what I don't know" is the default state.
 - What did the Horizon Scan surface? Are there signals flagged for this review?
 - Is the current Career Goal still the right frame — or has something shifted that should change direction?
-- Is the Career Goal *challenging* enough, or has it become a comfortable label? Snape's test: does saying it out loud produce any discomfort? If not, it's probably too safe.
+- Is the Career Goal *challenging* enough, or has it become a comfortable label? the Mentor's test: does saying it out loud produce any discomfort? If not, it's probably too safe.
 - Is the learning-plan still building toward this Career Goal, or has it drifted?
 
 **Promotion readiness score:** Score 1–5 on each dimension using only evidence already on record:
@@ -50,14 +50,14 @@ Composite = average of the four, rounded to one decimal. Translate to: **<2.5 No
 
 ---
 
-## Step 3 — Snape's verdict
+## Step 3 — the Mentor's verdict
 
 ```markdown
 ---
 
-## Snape's verdict — [YYYY-QN]
+## the Mentor's verdict — [YYYY-QN]
 
-*[2–3 sentences: what Snape sees across the whole goal cascade — the pattern that connects all three levels.]*
+*[2–3 sentences: what the Mentor sees across the whole goal cascade — the pattern that connects all three levels.]*
 
 ### Life Vision
 **Still true?** [Yes / Partially / Needs revision]
@@ -68,7 +68,7 @@ Composite = average of the four, rounded to one decimal. Translate to: **<2.5 No
 **Still pointed right?** [Yes / Needs sharpening / Needs revision]
 **What the horizon signal says:** [key outward signal, or "no scan done — that's a gap"]
 **Promotion readiness score:** [X.X/5 — band] — Domain judgment: [n], Scope/seniority: [n], Outcome impact: [n], External validation: [n]. Weakest link: [name it].
-**Challenge:** [the one thing Snape would say if being ruthlessly honest]
+**Challenge:** [the one thing the Mentor would say if being ruthlessly honest]
 
 ### Now Goal
 **Still right?** [Yes / Needs updating]
@@ -95,7 +95,7 @@ Present proposed changes clearly: old → new. Do not update `system/feedback-lo
 
 ## Step 5 — Log the review
 
-Write the full Snape verdict + proposed updates to `journal/goal-reviews/YYYY-QN.md`:
+Write the full the Mentor verdict + proposed updates to `journal/goal-reviews/YYYY-QN.md`:
 
 ```markdown
 # Goal Review — YYYY-QN
@@ -107,7 +107,7 @@ _Reviewed: YYYY-MM-DD_
 - Horizon scans: [list or "none"]
 - Decisions since last review: [list from INDEX.md]
 
-## Snape's verdict
+## the Mentor's verdict
 [full verdict block from Step 3]
 
 ## Proposed goal updates
@@ -133,4 +133,4 @@ git push origin main
 
 Ask: "Does any proposed change to the goal cascade feel right? Say yes to any, and I'll update `system/feedback-loop.md` and commit."
 
-Then one sentence from Snape: the single most important thing to do differently next quarter.
+Then one sentence from the Mentor: the single most important thing to do differently next quarter.

@@ -65,7 +65,7 @@ Before the first question, create a GitHub issue to log this session:
 INTERVIEW_URL=$(gh issue create \
   --repo YOUR_GITHUB_USERNAME/YOUR_REPO \
   --title "Interview Practice: {Company} — {Role Title} — {YYYY-MM-DD}" \
-  --label "machine:yourname,agent:status:doing,model:sonnet" \
+  --label "machine:yourname,agent:status:doing,model:{your running model}" \
   --body "$(cat <<'EOF'
 ## Interview Session
 

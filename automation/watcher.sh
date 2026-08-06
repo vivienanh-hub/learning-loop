@@ -79,26 +79,45 @@ $ISSUE_CONTENT"
     # Auto-commit whatever the skill wrote — memory, learning progress,
     # journal entries — so a headless run leaves the repo in the same state
     # an interactive session would.
-    CHANGED=$(git -C "$REPO_DIR" status --porcelain \
-      personal-professional-profile/learning/progress/ \
-      personal-professional-profile/learning/learning-plan.md \
-      personal-professional-profile/learning/learning-index.md \
-      personal-professional-profile/career/achievement-log.md \
-      personal-professional-profile/interview-prep/story-bank/ \
-      .claude/memory/ \
-      journal/ 2>/dev/null)
-    if [ -n "$CHANGED" ]; then
-      git -C "$REPO_DIR" add \
-        personal-professional-profile/learning/progress/ \
-        personal-professional-profile/learning/learning-plan.md \
-        personal-professional-profile/learning/learning-index.md \
-        personal-professional-profile/career/achievement-log.md \
-        personal-professional-profile/interview-prep/story-bank/ \
-        .claude/memory/ \
-        journal/ 2>/dev/null
-      git -C "$REPO_DIR" commit -m "agent: update from issue #$ISSUE_NUM" 2>/dev/null
-      git -C "$REPO_DIR" push origin main 2>/dev/null
-      echo "[$(date '+%H:%M:%S')] Committed changes from issue #$ISSUE_NUM"
+    #
+    # Serialised behind a mutex. run_issue is backgrounded per issue, so two
+    # runs finishing at the same time would otherwise collide over
+    # .git/index.lock — losing a commit or having the push rejected. Git
+    # output is logged rather than discarded so a failure is actually visible;
+    # a leaked lock self-heals via the timeout below.
+    GIT_LOCK="$HOME/.learning-loop-git.lock.d"
+    WAITED=0
+    until mkdir "$GIT_LOCK" 2>/dev/null; do
+      if [ "$WAITED" -ge 300 ]; then
+        echo "[$(date '+%H:%M:%S')] issue #$ISSUE_NUM: git lock held 5m, skipping commit"
+        GIT_LOCK=""
+        break
+      fi
+      sleep 2
+      WAITED=$((WAITED + 2))
+    done
+
+    if [ -n "$GIT_LOCK" ]; then
+      TRACKED_PATHS=(
+        personal-professional-profile/learning/progress/
+        personal-professional-profile/learning/learning-plan.md
+        personal-professional-profile/learning/learning-index.md
+        personal-professional-profile/career/achievement-log.md
+        personal-professional-profile/interview-prep/story-bank/
+        .claude/memory/
+        journal/
+      )
+      CHANGED=$(git -C "$REPO_DIR" status --porcelain "${TRACKED_PATHS[@]}")
+      if [ -n "$CHANGED" ]; then
+        if git -C "$REPO_DIR" add "${TRACKED_PATHS[@]}" \
+          && git -C "$REPO_DIR" commit -m "agent: update from issue #$ISSUE_NUM" \
+          && git -C "$REPO_DIR" push origin main; then
+          echo "[$(date '+%H:%M:%S')] Committed changes from issue #$ISSUE_NUM"
+        else
+          echo "[$(date '+%H:%M:%S')] WARNING: git write failed for issue #$ISSUE_NUM — changes left uncommitted"
+        fi
+      fi
+      rm -rf "$GIT_LOCK"
     fi
 
     echo "[$(date '+%H:%M:%S')] Done: issue #$ISSUE_NUM"

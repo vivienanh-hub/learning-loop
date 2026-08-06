@@ -59,7 +59,7 @@ Wait for both agents to complete. Step 3 synthesizes **only from these two summa
 
 ## Step 3 — Synthesize
 
-Before writing anything, read all memory files in `.claude/memory/`. The synthesis is written **in Snape's voice**.
+Before writing anything, read all memory files in `.claude/memory/`. The synthesis is written **in the Mentor's voice**.
 
 Output the issue rename marker on its own line:
 `<!-- title: [Review] Week of YYYY-MM-DD -->`
@@ -109,9 +109,9 @@ Render the current learning sequence as a table with a status column:
 
 ---
 
-### Snape's read
+### the Mentor's read
 
-*Exactly 3 paragraphs, Snape's voice, no bullets, no sub-headers.*
+*Exactly 3 paragraphs, the Mentor's voice, no bullets, no sub-headers.*
 
 - *Each paragraph opens with a short bolded lead phrase (4–8 words) naming the cut, then prose that earns it.*
 - *Three cuts, each ≤ 6 sentences.*
@@ -156,7 +156,7 @@ Name specific tasks, never categories ("drill the margin answer out loud, timed"
    Give the exact `/exam apply` command to run.
 
 **The question to sit with:**
-*[One uncomfortable question drawn from what Snape knows — something not yet answered honestly.]*
+*[One uncomfortable question drawn from what the Mentor knows — something not yet answered honestly.]*
 ```
 
 ---
@@ -165,11 +165,11 @@ Name specific tasks, never categories ("drill the margin answer out loud, timed"
 
 Before writing the file, check:
 
-- [ ] Exactly 3 sections (ledger, Snape's read, next week) — no added headers
+- [ ] Exactly 3 sections (ledger, the Mentor's read, next week) — no added headers
 - [ ] Every "not done" claim was verified against the tracking issue's actual state
 - [ ] Every `[Exam]`/`[Learn]` issue that closed this week appears as a win
-- [ ] Snape's read does not restate a prior review's cut verbatim
-- [ ] Snape's read: no bullets, no sub-headers, exactly 3 paragraphs, each ≤ 6 sentences
+- [ ] the Mentor's read does not restate a prior review's cut verbatim
+- [ ] the Mentor's read: no bullets, no sub-headers, exactly 3 paragraphs, each ≤ 6 sentences
 - [ ] Learning table present and correctly maps current week
 - [ ] Next week orders: specific tasks, not categories
 - [ ] Top 3 priorities block present, exactly 3 numbered lines
@@ -197,7 +197,7 @@ ISSUE_URL=$(gh issue create \
   --repo YOUR_GITHUB_USERNAME/YOUR_REPO \
   --title "[Review] Week of MONDAY_DATE" \
   --body-file "journal/reviews/${YEAR}-W${WEEK}.md" \
-  --label "agent:status:done,model:sonnet,machine:yourname")
+  --label "agent:status:done,model:{your running model},machine:yourname")
 ```
 
 Replace `MONDAY_DATE` with the Monday date of the reviewed week (format: `YYYY-MM-DD`).
@@ -210,7 +210,7 @@ Replace `MONDAY_DATE` with the Monday date of the reviewed week (format: `YYYY-M
 |---|---|
 | 1. Learning progress files | Session log entries where a topic was studied |
 | 2. Achievement log | Evidence lines from the ledger only |
-| 3. Memory promotion | Session logs from the past 4 weeks |
+| 3. Memory admission and review | Session logs from the past 4 weeks + `journal/memory-effects.md` |
 | 4. Decisions check | Any decision recorded in this week's session logs |
 | 5. Spaced retrieval schedule | `/exam` outcomes from this week |
 | 6. Learning-plan alignment | `learning-plan.md` + current week's deliverable row |
@@ -219,7 +219,13 @@ Replace `MONDAY_DATE` with the Monday date of the reviewed week (format: `YYYY-M
 
 1. **Learning progress files** — for any topic that appeared in session logs this week, update `last_session` date and append a session log entry if missing.
 2. **Achievement log** — if the ledger's "Evidence" section has anything concrete, append it to `personal-professional-profile/career/achievement-log.md`.
-3. **Memory promotion** — scan session logs from the past 4 weeks. If a pattern appears in 3+ sessions, promote it to a memory file in `.claude/memory/`. Do not save one-off observations.
+3. **Memory admission and review** — follow `system/memory-policy.md` and scan session logs from the past 4 weeks.
+   - Explicit facts, goals, constraints, and preferences may be confirmed immediately with provenance and a review horizon.
+   - Session events remain episodic evidence.
+   - Behavioural inferences become candidates only after three independent episodes; repeated summaries count once. Add sources, expiry, and consumers, then seek learner confirmation rather than activating the claim silently.
+   - One reproduced workflow defect may justify a procedural correction. Sensitive psychological inferences are never promoted automatically.
+   - Review touched memories for contradiction, expiry, provenance, and effects. Do not sweep-migrate untouched legacy records.
+   - Read `journal/memory-effects.md`; stop applying stale or harmful memories and flag them for correction, dispute, retirement, or deletion.
 4. **Decisions check** — if any session log records a choice the user made, check `journal/decisions/`. If not already logged, create a file and update `journal/decisions/INDEX.md`.
 5. **Spaced retrieval schedule** — update the table in `learning-plan.md`. On pass, push "Re-test by" out 2–3 weeks; on miss, reset to ~1 week.
 6. **Learning-plan alignment check** — confirm the current week's artifact is still correctly derived from the Career Goal.
@@ -229,7 +235,7 @@ Replace `MONDAY_DATE` with the Monday date of the reviewed week (format: `YYYY-M
 ## Step 7 — Commit and push
 
 ```bash
-git add journal/reviews/ personal-professional-profile/learning/progress/ personal-professional-profile/learning/learning-plan.md personal-professional-profile/career/achievement-log.md journal/decisions/
+git add journal/reviews/ journal/memory-effects.md .claude/memory/ personal-professional-profile/learning/progress/ personal-professional-profile/learning/learning-plan.md personal-professional-profile/career/achievement-log.md journal/decisions/
 git commit -m "weekly review $(date +%Y-W%V)"
 git push origin main
 ```

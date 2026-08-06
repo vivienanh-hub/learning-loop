@@ -12,6 +12,8 @@ Domain-specific rules and context live in modular memory files at `.claude/memor
 
 **IMPORTANT — memory write path:** Write all memory files to `.claude/memory/` in this repo, not to any global Claude Code memory location. This repo path is the source of truth.
 
+Follow `system/memory-policy.md` for every memory write. Explicit facts require provenance and review dates; behavioural inferences remain candidates until independently evidenced and confirmed by the learner. Candidate, disputed, retired, and expired memories must not shape guidance.
+
 Note: the shipped `.gitignore` excludes `.claude/memory/`, since memory holds personal detail and this template assumes a public repo. Your memory persists on disk either way. If your workspace repo is private and you want memory backed up and synced across machines, drop that line from `.gitignore`.
 
 ## Self-improving rules

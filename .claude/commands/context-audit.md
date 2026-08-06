@@ -36,6 +36,8 @@ For each item, record:
 - Confidence level (High / Medium / Low)
 - Status (Confirmed / Assumption / Possibly outdated / Unknown)
 
+Treat candidate, disputed, retired, and expired memory records as items to audit, not active beliefs. Do not let them frame recommendations during the interview.
+
 Do not show this table to the user yet. Use it to drive the interview.
 
 ---
@@ -61,25 +63,32 @@ Flag the Unknown items.
 **Round 4 — Tools & workflows**
 Cover: which tools are active vs. idle, what Claude is actually used for day-to-day, anything missing from the current picture.
 
-After each round, output a brief summary (3–5 bullets) of what changed or was confirmed. Be specific — "Location confirmed: HCMC" not "location noted."
+After each round, output a brief summary (3–5 bullets) of what changed or was confirmed. Be specific — "Location confirmed: [city]" not "location noted."
 
-Use plain, direct language. No Snape persona. This is a calibration exercise.
+Use plain, direct language. No the Mentor persona. This is a calibration exercise.
 
 ---
 
 ## Step 4 — Update memory
 
-After the interview is complete, update memory files to reflect what changed.
+After the interview is complete, decide memory actions with the learner, then update the files.
 
 **Rules:**
+- Follow `system/memory-policy.md`; this audit is the learner-control surface for memory
 - Update existing files rather than creating new ones where possible
 - Only create a new memory file if genuinely new territory
 - Remove or correct beliefs that were wrong
 - Do not save ephemeral session state — only durable facts, patterns, and decisions
+- For every memory reviewed, show claim type, status, source evidence, last confirmation, review/expiry date, consumers, and the behaviour it changes
+- For each memory needing a decision, show a concise row with claim, source, current status, consumers, review/expiry date, and the available actions: `confirm`, `dispute`, `correct`, `retire`, or `delete`. Ask before applying the action; do not infer the learner's choice
+- Disputed, retired, and expired memories stop influencing guidance. Deletion removes the durable claim, index entry, and any procedure derived only from it; source episodes remain unless their deletion is also requested
+- Keep the learner's words separate from model inference. New behavioural inferences remain candidates until the learner confirms the exact claim
 
 Check `MEMORY.md` before writing any file. If the index entry is stale, update it.
 
-Do this silently. Do not narrate the saves.
+Inspect `journal/memory-effects.md`. Surface stale or harmful effects and confirmed memories whose review dates are overdue.
+
+After the learner chooses, apply the saves silently. Do not narrate each write.
 
 ---
 
@@ -112,6 +121,9 @@ Use today's date. If a file already exists at that path, append `-2` to the file
 ### New information (not in memory before)
 [Bullet list]
 
+### Memory actions
+[Table: Memory | Previous status | Action | Reason — include corrections, confirmations, disputes, retirements, and deletions]
+
 ## Recommendations: automations and skills to build
 
 ### High value — build soon
@@ -137,12 +149,12 @@ Keep each section tight. If a section has nothing to say, write "Nothing this cy
 ## Step 6 — Commit and push
 
 ```bash
-git add journal/sessions/YYYY-MM-DD-context-audit.md
+git add journal/sessions/YYYY-MM-DD-context-audit.md .claude/memory/ journal/memory-effects.md
 git commit -m "docs: context and memory audit YYYY-MM-DD"
 git push
 ```
 
-Do not stage or commit any other modified files.
+Stage only the report, memory records actually changed by this audit, the memory index when changed, and the effects log when changed. Do not stage unrelated files.
 
 ---
 

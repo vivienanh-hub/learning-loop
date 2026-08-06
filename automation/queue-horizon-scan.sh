@@ -7,6 +7,7 @@
 REPO="YOUR_GITHUB_USERNAME/YOUR_REPO"
 REPO_DIR="/path/to/your/workspace"
 MACHINE_LABEL="machine:yourname"
+MODEL_LABEL="model:sonnet"   # which model the watcher runs this skill on
 SCAN_DIR="$REPO_DIR/journal/horizon-scans"
 
 # Sync first — a scan can complete via a session that isn't this local
@@ -38,6 +39,6 @@ fi
 ISSUE_URL=$(gh issue create --repo "$REPO" \
   --title "[Horizon Scan] $MONTH" \
   --body "Monthly automated horizon scan. Run \`/horizon-scan\` and follow it end to end: scan the field, filter every signal Noise/Watch/Act, route Act signals, write the journal log, commit and push, then close out.${MISSED_NOTE}" \
-  --label "$MACHINE_LABEL,model:sonnet,agent:status:todo")
+  --label "$MACHINE_LABEL,$MODEL_LABEL,agent:status:todo")
 
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] Queued horizon scan for $MONTH: $ISSUE_URL"

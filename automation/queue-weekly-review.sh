@@ -12,6 +12,7 @@
 REPO="YOUR_GITHUB_USERNAME/YOUR_REPO"
 REPO_DIR="/path/to/your/workspace"
 MACHINE_LABEL="machine:yourname"
+MODEL_LABEL="model:sonnet"   # which model the watcher runs this skill on
 REVIEW_DIR="$REPO_DIR/journal/reviews"
 
 # Sync first — a review can complete via a session that isn't this local
@@ -47,6 +48,6 @@ fi
 ISSUE_URL=$(gh issue create --repo "$REPO" \
   --title "[Review Trigger] $THIS_PERIOD" \
   --body "Weekly automated review. Run \`/weekly-review\` end to end: gather session logs and issue activity, synthesize, verify against the rubric, write the journal file, update the Spaced Retrieval Schedule in learning-plan.md, commit and push, then close out.${MISSED_NOTE}" \
-  --label "$MACHINE_LABEL,model:sonnet,agent:status:todo")
+  --label "$MACHINE_LABEL,$MODEL_LABEL,agent:status:todo")
 
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] Queued weekly review for $THIS_PERIOD: $ISSUE_URL"

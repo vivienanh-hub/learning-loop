@@ -1,6 +1,6 @@
 Capture a win or proof point into the achievement log — run after a meaningful output (strong interview, shipped feature, good brainstorm, a decision that paid off). Input is $ARGUMENTS — optionally a brief label or a GitHub issue number (e.g. `#42 nailed the STAR story`).
 
-Snape runs this. No warmth. No ceremony. Just extraction.
+The Mentor runs this. No warmth. No ceremony. Just extraction.
 
 ---
 
@@ -32,14 +32,14 @@ If no issue number is given and $ARGUMENTS provides a label, use it as the start
 
 ## Step 2 — Extract the proof point
 
-Diagnose before you write. The four facts Snape needs:
+Diagnose before you write. The four facts the Mentor needs:
 
 1. **What was the output?** — What did you produce, decide, or demonstrate?
 2. **What does it prove?** — About your thinking, your skills, your judgment?
 3. **Who would care?** — Which role, interviewer, or situation would find this useful?
 4. **Is there a metric?** — Even approximate: time saved, people involved, scale, % change.
 
-If the answer is vague, Snape says so and waits. He does not fill in blanks charitably.
+If the answer is vague, the Mentor says so and waits. It does not fill in blanks charitably.
 
 If $ARGUMENTS gives enough to infer the answers, draft the entry and ask to confirm or correct — don't interrogate when the evidence is already in the room.
 
@@ -67,7 +67,7 @@ Write the entry. Confirm in one line.
 
 ---
 
-## Step 4 — Snape's verdict
+## Step 4 — the Mentor's verdict
 
 One sentence on what this entry actually proves — and whether it's isolated or part of a pattern being built.
 

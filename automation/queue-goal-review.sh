@@ -7,6 +7,7 @@
 REPO="YOUR_GITHUB_USERNAME/YOUR_REPO"
 REPO_DIR="/path/to/your/workspace"
 MACHINE_LABEL="machine:yourname"
+MODEL_LABEL="model:sonnet"   # which model the watcher runs this skill on
 REVIEW_DIR="$REPO_DIR/journal/goal-reviews"
 
 # Sync first — same reason as the other queue scripts: avoid a stale
@@ -32,6 +33,6 @@ fi
 ISSUE_URL=$(gh issue create --repo "$REPO" \
   --title "[Goal Review] $THIS_PERIOD" \
   --body "Quarterly automated goal review. Run \`/goal-review\` end to end: read the North Star and goal cascade, the quarter's reviews and horizon scans, challenge each goal level, write \`journal/goal-reviews/$THIS_PERIOD.md\`, commit and push, then close out." \
-  --label "$MACHINE_LABEL,model:sonnet,agent:status:todo")
+  --label "$MACHINE_LABEL,$MODEL_LABEL,agent:status:todo")
 
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] Queued goal review for $THIS_PERIOD: $ISSUE_URL"

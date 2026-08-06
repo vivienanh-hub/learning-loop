@@ -39,7 +39,10 @@ If the label matches (or no model label is set), proceed.
 
 8. If the prompt contains `<!-- issue_number: N -->`, extract N and rename the issue immediately:
    ```bash
-   gh issue edit N --repo YOUR_GITHUB_USERNAME/YOUR_REPO --title "[Learn] {Topic Name}" --add-label "model:sonnet"
+   # Use the label for the model you are actually running — model:sonnet, model:opus,
+   # or model:haiku. Never hardcode one: the model gate above compares this label
+   # against your running model, so a wrong value fails the gate on the next run.
+   gh issue edit N --repo YOUR_GITHUB_USERNAME/YOUR_REPO --title "[Learn] {Topic Name}" --add-label "model:{your running model}"
    ```
 
 ---

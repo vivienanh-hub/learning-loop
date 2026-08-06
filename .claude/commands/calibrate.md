@@ -20,6 +20,7 @@ Before saying anything, read:
 **Memory state:**
 - `.claude/memory/MEMORY.md` — index first
 - Every file listed in the index
+- `journal/memory-effects.md` — material uses and their helpful / irrelevant / stale / harmful outcomes
 
 **Skill files:**
 - Every `.md` file in `.claude/commands/`
@@ -46,7 +47,7 @@ From the session logs, compile:
 | Skill | Times invoked (last 30 days) | Last used |
 |-------|------------------------------|-----------|
 | weekly-review | N | YYYY-MM-DD |
-| snape | N | YYYY-MM-DD |
+| mentor | N | YYYY-MM-DD |
 | ... | | |
 
 A skill that doesn't appear is still a row — frequency of zero is signal.
@@ -66,9 +67,9 @@ Cross-reference "Evidence worth saving" sections in session logs against `achiev
 **3b. Open threads that died**
 Collect all "Open threads" items from the last 30 days. Identify any that never appeared in a subsequent session log.
 
-**3c. Patterns worth promoting**
-A pattern is promotion-eligible if it appeared in 3 or more sessions in the last 30 days. Flag candidates:
-- `[promote?]` — "[Pattern description]" — appeared in sessions: [dates]
+**3c. Behavioural memory candidates**
+Apply `system/memory-policy.md`. A behavioural inference is candidate-eligible only after three independent episodes in the last 30 days; repeated summaries count once. Flag candidates for learner confirmation, not automatic activation:
+- `[candidate?]` — "[Pattern description]" — independent episodes: [dates/paths] — proposed expiry: [date] — consumers: [commands]
 
 ---
 
@@ -84,7 +85,11 @@ Produce the system diagnosis. If there's nothing to say, write "Nothing this cyc
 **Memory health**
 - Which memory rules are contradicted by recent session behavior?
 - Which are stale — true once, possibly no longer?
-- Which are missing — a pattern that's appeared 3+ times but has no memory file?
+- Which confirmed memories are expired, overdue for review, missing provenance, or missing consumers?
+- Which candidates lack three independent episodes or learner confirmation?
+- Which memories produced `irrelevant`, `stale`, or `harmful` effects in `journal/memory-effects.md`?
+- Which interventions are combined with their evidence or inference instead of stored separately?
+- Which missing behavioural candidates have three independent episodes and no record?
 
 **Workflow gaps**
 - What does the user do manually, every month or more, that has no skill? Name it, don't editorialize.
@@ -140,7 +145,7 @@ Write the Calibrate Report. Tone: dry, occasionally cutting, never mean. Finding
 ### Captures
 **Unlogged wins:** [list or "None"]
 **Dropped threads:** [list or "None"]
-**Promotion candidates:** [list or "None"]
+**Memory candidates:** [list or "None"]
 
 ### Diagnosis
 **Skills:** [3–5 bullet findings]
@@ -192,7 +197,7 @@ Wait for the answer. Then:
 
 **Portfolio capture:** For each unlogged win, run `/portfolio-capture "[label]"`.
 
-**Promotion candidates:** Write the new memory file and add a row to `MEMORY.md`.
+**Memory candidates:** If the learner confirms the exact claim, write it as a confirmed memory with provenance, review/expiry dates, and named consumers, then add a row to `MEMORY.md`.
 
 ---
 

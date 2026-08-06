@@ -49,7 +49,7 @@ Each "Act" signal goes to exactly one destination:
 
 - **→ `learning-plan.md`** if it surfaces a skill gap not already in the backlog. Add a row with the topic, why it matters, and a candidate resource.
 - **→ Positioning / CV note** if it means the market rewards something you have but aren't surfacing. Write a one-line note to add to `career/cv-bullet-bank.md`.
-- **→ Goal Review flag** if the signal is large enough to question whether the Career Goal is still pointing at the right thing. Write it as a question for Snape.
+- **→ Goal Review flag** if the signal is large enough to question whether the Career Goal is still pointing at the right thing. Write it as a question for the Mentor.
 
 ---
 

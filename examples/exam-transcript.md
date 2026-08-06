@@ -4,7 +4,7 @@ This is an example of what a `/exam` session looks like. Topic: **RAG (Retrieval
 
 ---
 
-**Sheldon.** Let's see what you actually know about RAG. This is Attempt 1 — closed-book, no notes.
+**The Lab.** Let's see what you actually know about RAG. This is Attempt 1 — closed-book, no notes.
 
 Explain the core architecture of a RAG system: what the three main components are and what each one does. Then tell me what problem RAG solves that a vanilla LLM cannot.
 

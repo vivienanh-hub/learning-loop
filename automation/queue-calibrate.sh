@@ -9,6 +9,7 @@
 REPO="YOUR_GITHUB_USERNAME/YOUR_REPO"
 REPO_DIR="/path/to/your/workspace"
 MACHINE_LABEL="machine:yourname"
+MODEL_LABEL="model:sonnet"   # which model the watcher runs this skill on
 LOG_FILE="$REPO_DIR/journal/system-health/log.md"
 
 # Sync first — same reason as the other queue scripts: avoid a stale
@@ -39,6 +40,6 @@ fi
 ISSUE_URL=$(gh issue create --repo "$REPO" \
   --title "[Calibrate] $MONTH" \
   --body "Monthly automated system-health pass. Run \`/calibrate\` end to end: load context, tally skill usage, find what's stale or broken, print the report, then ask which changes to execute and wait for the answer. Regardless of the answer, append one line to \`journal/system-health/log.md\` before closing.${MISSED_NOTE}" \
-  --label "$MACHINE_LABEL,model:sonnet,agent:status:todo")
+  --label "$MACHINE_LABEL,$MODEL_LABEL,agent:status:todo")
 
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] Queued calibrate run for $MONTH: $ISSUE_URL"

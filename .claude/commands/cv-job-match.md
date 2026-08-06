@@ -43,7 +43,10 @@ Before writing anything else, output this line:
 
 If the prompt contains `<!-- issue_number: N -->`, rename the issue immediately:
 ```bash
-gh issue edit N --repo YOUR_GITHUB_USERNAME/YOUR_REPO --title "[CV Match] {Company} — {Role Title}" --add-label "model:sonnet"
+# Use the label for the model you are actually running — model:sonnet, model:opus,
+# or model:haiku. Never hardcode one: the model gate above compares this label
+# against your running model, so a wrong value fails the gate on the next run.
+gh issue edit N --repo YOUR_GITHUB_USERNAME/YOUR_REPO --title "[CV Match] {Company} — {Role Title}" --add-label "model:{your running model}"
 ```
 
 ---
