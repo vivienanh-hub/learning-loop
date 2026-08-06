@@ -67,7 +67,7 @@ Ten commands. Each is a Markdown file with no code in it — the behaviour is en
 | `/mentor` | Career accountability. Loads history, goals, and recent sessions before speaking |
 | `/portfolio-capture` | Captures a win before the detail fades |
 
-Also here: [`docs/skill-map.md`](docs/skill-map.md) for routing, [`automation/`](automation/) for the scheduler that runs the timed skills headlessly, and [`examples/`](examples/) for real output — a [field scan](examples/horizon-scan-sample.md), an [exam transcript](examples/exam-transcript.md), and a [memory audit](examples/memory-audit-sample.md).
+Also here: [`scripts/check.py`](scripts/check.py), which is what stops prose from rotting silently — it verifies command references, links, frontmatter, issue-template titles and skill counts, and runs on every push. Plus [`docs/skill-map.md`](docs/skill-map.md) for routing, [`automation/`](automation/) for the scheduler that runs the timed skills headlessly, and [`examples/`](examples/) for real output — a [field scan](examples/horizon-scan-sample.md), an [exam transcript](examples/exam-transcript.md), and a [memory audit](examples/memory-audit-sample.md).
 
 ---
 
