@@ -30,7 +30,7 @@ sed -i '' 's|YOUR_GITHUB_USERNAME/YOUR_REPO|your-username/your-repo|g' *.md   # 
 sed -i    's|YOUR_GITHUB_USERNAME/YOUR_REPO|your-username/your-repo|g' *.md   # Linux
 ```
 
-Nine of the twelve skills reference the repo this way — `/sheldon`, `/snape`, `/learn`, `/exam`, `/weekly-review`, `/calibrate`, `/interview`, `/cv-job-match`, `/portfolio-capture`. Skip this step and each one fails on its first `gh` call. (`/context-audit`, `/goal-review`, and `/horizon-scan` are file-only and need no change.)
+Nine of the twelve skills reference the repo this way — `/lab`, `/mentor`, `/learn`, `/exam`, `/weekly-review`, `/calibrate`, `/interview`, `/cv-job-match`, `/portfolio-capture`. Skip this step and each one fails on its first `gh` call. (`/context-audit`, `/goal-review`, and `/horizon-scan` are file-only and need no change.)
 
 The automation scripts carry the same placeholder plus two more — see [automation/README.md](automation/README.md) step 1.
 
@@ -70,9 +70,11 @@ your-workspace/
 │   ├── horizon-scans/
 │   ├── decisions/
 │   ├── goal-reviews/
+│   ├── memory-effects.md
 │   └── system-health/
 ├── system/
-│   └── feedback-loop.md
+│   ├── feedback-loop.md
+│   └── memory-policy.md  ← copy from docs/memory-policy.md
 └── cv/
     └── your_cv.tex        ← or .pdf, .md — update the path in cv-job-match.md and interview.md
 ```
@@ -94,9 +96,13 @@ your-workspace/
 [Your current concrete target: specific role/company type, salary, timeline]
 ```
 
-**`personal-professional-profile/career/experience.yaml`** — your work history. Used by Snape, the interview skill, and cv-job-match.
+**`personal-professional-profile/career/experience.yaml`** — your work history. Used by the Mentor, the interview skill, and cv-job-match.
 
 **`.claude/memory/user_profile.md`** — how you learn, your background, your working style. Start with what you know about yourself and let the system refine it over time.
+
+**`system/memory-policy.md`** — copy [docs/memory-policy.md](docs/memory-policy.md) here. It governs what the skills may remember, how inferences earn confirmation, and how memories expire or are corrected.
+
+**`journal/memory-effects.md`** — create the outcome table shown in the memory policy. Keep this private; it can reveal which memories influenced real decisions.
 
 ### 6. Create GitHub issue labels
 
@@ -113,12 +119,20 @@ gh label create "model:haiku" --color "#22d3ee" --repo YOUR_GITHUB_USERNAME/YOUR
 gh label create "machine:yourname" --color "#94a3b8" --repo YOUR_GITHUB_USERNAME/YOUR_REPO
 ```
 
+Then copy the issue templates. `/lab` reads the default `Lab:` title as its rename trigger, and `/interview` reads the **Practice focus** and **Custom focus** fields — both misbehave without them:
+
+```bash
+cp -r learning-loop/.github/ISSUE_TEMPLATE/ your-workspace/.github/ISSUE_TEMPLATE/
+```
+
+The templates default to `model:sonnet`. Change that in each `.yml` if you run a different model by default.
+
 ### 7. Run your first session
 
 Open Claude Code in your workspace and try:
 
 ```
-/sheldon what does it mean to be an AI product manager in 2026?
+/lab what does it mean to be an AI product manager in 2026?
 ```
 
 Or if you want to learn a topic:
@@ -145,4 +159,4 @@ The skills above run when you type them. `/horizon-scan`, `/weekly-review`, `/go
 
 Every skill is a Markdown file you own. Change the voice, adjust the rubric, add your own file paths. The skills are instructions — they do exactly what they say.
 
-The most important file to adapt: `snape.md`. His opening provocation reads from your session logs and career memory. The better your memory files, the sharper he gets.
+The most important file to adapt: `mentor.md`. Its opening provocation reads from your session logs and career memory. The better your memory files, the sharper it gets.

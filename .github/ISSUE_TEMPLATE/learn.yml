@@ -1,0 +1,19 @@
+name: Learn a topic
+description: Structured teaching session with /learn
+title: "[Learn]"
+labels: ["agent:status:todo", "model:sonnet"]
+body:
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+      description: One topic. It gets split into 3–5 concept chunks.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why now
+      description: >
+        What decision or gap this is for. Shapes which chunks get priority and what
+        the applied paragraph at the end should be about.

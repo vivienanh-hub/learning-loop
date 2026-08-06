@@ -1,0 +1,29 @@
+name: Brainstorm
+description: Pressure-test an idea with /lab
+title: "Lab:"
+labels: ["agent:status:todo", "model:sonnet"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Leave the title as `Lab:` — `/lab` derives a descriptive title from the body once it has read the idea.
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What you're thinking, in your own words. Messy is fine — structuring it is the job.
+    validations:
+      required: true
+  - type: dropdown
+    id: goal
+    attributes:
+      label: What do you want to walk away with?
+      description: Determines the opening question. Defaults to stress-test if left alone.
+      options:
+        - Stress-test — find the load-bearing assumption
+        - Decide — pick between options
+        - Explore — structure something still unformed
+        - Unstuck — the reasoning stopped holding together
+      default: 0
+    validations:
+      required: true

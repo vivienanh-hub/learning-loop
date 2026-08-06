@@ -1,0 +1,31 @@
+name: Exam
+description: Closed-book test with /exam
+title: "[Exam]"
+labels: ["agent:status:todo", "model:sonnet"]
+body:
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Mode
+      options:
+        - Knowledge exam — closed-book recall and reasoning
+        - Apply — applied paragraph against a real product
+      default: 0
+    validations:
+      required: true
+  - type: input
+    id: product
+    attributes:
+      label: Product
+      description: Apply mode only. The product the paragraph has to be true for.
+  - type: input
+    id: focus
+    attributes:
+      label: Focus
+      description: 'Optional. Narrows the question to one sub-area, e.g. "online vs offline metrics".'
