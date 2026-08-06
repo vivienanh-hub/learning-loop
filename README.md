@@ -10,7 +10,7 @@ This repo is the system itself, published as a worked example of what it takes t
 
 ## What it has actually done
 
-Numbers from my own instance, which is private. These describe activity, not outcomes — I can show that the loop ran, not that it made me smarter.
+Numbers from my own instance, which is private. These describe activity, not outcomes — I can show that the loop ran, not that it made me smarter. The career side of the system is deliberately not reported here; it runs on personal data I don't publish.
 
 | | |
 |---|---|
@@ -97,7 +97,7 @@ Twelve commands. Each is a Markdown file with no code in it — the behaviour is
 | `/goal-review` | Quarterly reconciliation of Life Vision → Career Goal → Now Goal, with a promotion-readiness score |
 | `/horizon-scan` | Monthly outward scan; every signal gets exactly one verdict — Noise, Watch, or Act |
 | `/context-audit` | Shows every belief the system holds about me, with source and consumers; confirm, dispute, correct, retire, or delete |
-| `/interview` | Mock interview from a real job description, scored, with a model answer built from my own CV |
+| `/interview` | Mock interview from a real job description, scored, with a model answer built from your own CV |
 | `/cv-job-match` | Role-fit analysis: gaps, pitch angle, what to fix before applying |
 | `/portfolio-capture` | Captures a win before the detail fades |
 
