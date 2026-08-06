@@ -79,7 +79,6 @@ metadata:
     - onboarding
   consumers:
     - mentor
-    - cv-job-match
 ---
 
 Status: [actively searching / open to opportunities / not looking]

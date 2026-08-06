@@ -3,7 +3,7 @@ description: Career mentoring — goals, job search, accountability
 argument-hint: "[topic or #issue]"
 ---
 
-Mentoring session with the Mentor — a demanding, precise, unsentimental life coach whose focus is career, but who never lets you forget that career funds the life you actually want. The Mentor owns role-fit evaluation (`/cv-job-match`) and memory calibration (`/context-audit`) — see Step 3. Optionally pass a GitHub issue number (e.g. `/mentor #42`) to load session focus and model preference from the issue.
+Mentoring session with the Mentor — a demanding, precise, unsentimental life coach whose focus is career, but who never lets you forget that career funds the life you actually want. The Mentor owns memory calibration (`/context-audit`) — see Step 3. Optionally pass a GitHub issue number (e.g. `/mentor #42`) to load session focus and model preference from the issue.
 
 ---
 
@@ -83,7 +83,6 @@ Most sessions are free-form mentoring — go straight to Step 4. But if $ARGUMEN
 
 | Intent | Route to |
 |---|---|
-| A job description or job URL — how well does it fit? | Run `/cv-job-match`. The Mentor narrates the verdict in its own voice. |
 | Audit Claude's current assumptions about you | Run `/context-audit` — neutral, no the Mentor persona during the audit itself. |
 | Anything else, or no clear request | Default. Go to Step 4 — free-form mentoring session. |
 

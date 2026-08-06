@@ -82,7 +82,7 @@ None of these are visible from reading the specs. They only show up when the thi
 
 ## What's in the repo
 
-Eleven commands. Each is a Markdown file with no code in it — the behaviour is entirely what the prose specifies.
+Ten commands. Each is a Markdown file with no code in it — the behaviour is entirely what the prose specifies.
 
 | Command | What it does |
 |---|---|
@@ -95,7 +95,6 @@ Eleven commands. Each is a Markdown file with no code in it — the behaviour is
 | `/goal-review` | Quarterly reconciliation of Life Vision → Career Goal → Now Goal, with a promotion-readiness score |
 | `/horizon-scan` | Monthly outward scan; every signal gets exactly one verdict — Noise, Watch, or Act |
 | `/context-audit` | Shows every belief the system holds about me, with source and consumers; confirm, dispute, correct, retire, or delete |
-| `/cv-job-match` | Role-fit analysis: gaps, pitch angle, what to fix before applying |
 | `/portfolio-capture` | Captures a win before the detail fades |
 
 Also here: [`docs/skill-map.md`](docs/skill-map.md) for routing, [`automation/`](automation/) for the scheduler that runs the timed skills headlessly, and [`examples/`](examples/) for real output — a [field scan](examples/horizon-scan-sample.md), an [exam transcript](examples/exam-transcript.md), and a [memory audit](examples/memory-audit-sample.md).
