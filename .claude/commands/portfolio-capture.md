@@ -1,3 +1,8 @@
+---
+description: Capture a win into the achievement log before the detail fades
+argument-hint: "[label or #issue]"
+---
+
 Capture a win or proof point into the achievement log — run after a meaningful output (strong interview, shipped feature, good brainstorm, a decision that paid off). Input is $ARGUMENTS — optionally a brief label or a GitHub issue number (e.g. `#42 nailed the STAR story`).
 
 The Mentor runs this. No warmth. No ceremony. Just extraction.

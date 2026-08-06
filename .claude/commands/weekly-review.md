@@ -1,3 +1,7 @@
+---
+description: Weekly synthesis — ledger, honest read, next week's orders
+---
+
 Run a weekly review. No input needed — you read everything yourself.
 
 ---

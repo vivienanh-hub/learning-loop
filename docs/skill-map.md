@@ -4,8 +4,8 @@ A single-table view of every skill in Learning Loop — what it does, its role i
 
 | Skill | Role in the loop | When to use |
 |---|---|---|
-| `/lab` | Front door — brainstorm facilitator, inquiry engine, router | When you have an idea to pressure-test, a question to explore, or you're not sure which skill to use |
-| `/mentor` | Life coach — career accountability, goal alignment, career strategy | When you want a mentor session on career decisions, job search strategy, or goal direction |
+| `/lab` | Brainstorm and pressure-test — the front door for unstructured thinking | When you have an idea to pressure-test or a question to explore |
+| `/mentor` | Career mentoring — accountability, goal alignment, career strategy | When you want a mentor session on career decisions, job search strategy, or goal direction |
 | `/learn` | Teacher — structured lesson on a topic, chunk by chunk, with Q&A | When you want to learn something new systematically |
 | `/exam` | Examiner — Socratic test of what you actually know | When you want to verify retention, not just study |
 | `/horizon-scan` | Field scanner — monthly outward look at your domain | Once a month: what's moving in the field, what's noise, what requires action |
@@ -39,7 +39,7 @@ Quarterly:
 ## Routing logic
 
 - **Have an idea to explore?** → `/lab`
-- **Want to learn something?** → `/lab` routes to `/learn`, or call `/learn` directly
+- **Want to learn something?** → `/learn`
 - **Want to test retention?** → `/exam [topic]`
 - **Preparing for an interview?** → `/interview [JD URL or #issue]`
 - **Evaluating a role?** → `/cv-job-match [JD URL]`

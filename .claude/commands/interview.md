@@ -1,3 +1,8 @@
+---
+description: Graded mock interview from a real job description
+argument-hint: "[JD URL, #issue, or pasted JD]"
+---
+
 Mock job interview. Input is $ARGUMENTS — a JD URL, LinkedIn job URL, GitHub issue number (e.g. `#22`), or pasted JD text. Interview runs in chat; full transcript is posted to a GitHub issue at the end.
 
 ---

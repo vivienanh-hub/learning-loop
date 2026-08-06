@@ -1,3 +1,7 @@
+---
+description: Monthly field scan — every signal triaged Noise / Watch / Act
+---
+
 Monthly outward scan of your field. Surfaces what you don't know you don't know, filters it, and routes "Act" signals into the system. Run once a month — not weekly (the field doesn't shift that fast).
 
 ---

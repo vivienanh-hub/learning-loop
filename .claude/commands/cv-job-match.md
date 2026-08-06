@@ -1,3 +1,8 @@
+---
+description: Match your profile against a target role — gaps and pitch angle
+argument-hint: "[JD URL or pasted JD]"
+---
+
 Match a job description against your CV and return targeted recommendations. Input is $ARGUMENTS — a job URL or pasted job description.
 
 ---

@@ -1,3 +1,8 @@
+---
+description: Teach a topic chunk by chunk, three graded answers per chunk
+argument-hint: "[topic]"
+---
+
 Learn about: $ARGUMENTS
 
 Teach the learner a topic systematically — one concept chunk at a time, with Q&A, tracking progress until 3 correct answers per chunk.

@@ -1,3 +1,7 @@
+---
+description: Review and correct what the system believes about you
+---
+
 Audit Claude's current assumptions about you, interview you to correct them, update memory, and produce a Markdown report with recommendations.
 
 ---
@@ -65,7 +69,7 @@ Cover: which tools are active vs. idle, what Claude is actually used for day-to-
 
 After each round, output a brief summary (3–5 bullets) of what changed or was confirmed. Be specific — "Location confirmed: [city]" not "location noted."
 
-Use plain, direct language. No the Mentor persona. This is a calibration exercise.
+Use plain, direct language. No Mentor persona. This is a calibration exercise.
 
 ---
 

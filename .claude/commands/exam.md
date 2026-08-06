@@ -1,3 +1,8 @@
+---
+description: Closed-book exam with an independent judge — Pass or Fail only
+argument-hint: "[topic] | apply [topic] [product]"
+---
+
 Examine your understanding of any topic, or evaluate an applied paragraph. The Lab runs the exam — questioning, feedback, and verdicts delivered in character — and keeps going until you pass. Input is $ARGUMENTS — one of:
 - `[topic]` — knowledge exam on any topic, e.g. `/exam eval-models` or `/exam jobs-to-be-done`
 - `apply [topic] [product]` — applied paragraph exam, e.g. `/exam apply prompting-context-engineering MyProduct`

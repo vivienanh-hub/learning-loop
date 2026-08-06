@@ -88,7 +88,7 @@ Twelve commands. Each is a Markdown file with no code in it — the behaviour is
 
 | Command | What it does |
 |---|---|
-| `/lab` | Front door. Brainstorm facilitator and router; names unsupported claims and skipped reasoning on sight |
+| `/lab` | Brainstorm and pressure-test; names unsupported claims and skipped reasoning on sight |
 | `/mentor` | Career accountability. Loads history, goals, and recent sessions before speaking; diagnoses before prescribing |
 | `/learn` | Teaches a topic chunk by chunk; three graded-correct answers per chunk before advancing |
 | `/exam` | Closed-book Socratic exam with an independent judge; three attempts then back to `/learn` |
@@ -110,6 +110,8 @@ Also here: [`docs/skill-map.md`](docs/skill-map.md) for routing, [`automation/`]
 **The memory rule was too blunt for the first two months.** The original version promoted any pattern seen three times into a durable belief. That collapsed four different things — facts I'd stated, events that happened, the system's interpretations of me, and decisions to change tutor behaviour — into one threshold. It meant a rough fortnight could harden into "you avoid applied work" and then get quoted back at me as though I'd said it. The current policy separates those and requires confirmation for anything inferred. There's a [migration guide](docs/memory-policy-migration.md) because I had to migrate my own records.
 
 **I built both halves at once.** The learning loop and the career loop went in together. I should have proven one closed before starting the other — the first six weeks had more surface area than evidence.
+
+**I hand-built a router the platform already provides.** `/lab` used to carry a table telling you which other skill to call. It only ever knew half the system, it went stale twice, and at one point it routed to a command that had never existed. Claude Code's own `/` menu does the job properly the moment each command declares a `description` — which none of mine did. The table is gone and the descriptions are the fix.
 
 **Setup is still too long.** Eight steps, a hand-run `sed`, and eight label-creation commands. It works, and it's more friction than it should be.
 

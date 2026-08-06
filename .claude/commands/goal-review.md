@@ -1,3 +1,7 @@
+---
+description: Quarterly North Star reconciliation with a promotion-readiness score
+---
+
 Quarterly the Mentor-led reconciliation of the North Star. Asks the hard questions about whether your goals are still right, still ambitious enough, and still connected to each other. Run every quarter or at major milestones (offer received, role shift, major life change).
 
 This is not a progress report. The Mentor does not celebrate. It challenges.
