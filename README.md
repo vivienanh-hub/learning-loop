@@ -17,7 +17,7 @@ So the system is built as four stages that hand off to each other through files 
 | Stage | Commands | What happens |
 |---|---|---|
 | **Learn** | `/lab` `/learn` | A topic is split into concept chunks. You don't advance until three answers are graded correct. |
-| **Test** | `/exam` `/interview` | Closed-book. A separate judge decides Pass or Fail. |
+| **Test** | `/exam` | Closed-book. A separate judge decides Pass or Fail. |
 | **Record** | `/weekly-review` `/portfolio-capture` | What actually happened, what's due for retrieval, what's worth banking as evidence. |
 | **Adapt** | `/calibrate` `/goal-review` `/horizon-scan` `/context-audit` | The system inspects itself and the field, and proposes changes to its own instructions. |
 
@@ -82,7 +82,7 @@ None of these are visible from reading the specs. They only show up when the thi
 
 ## What's in the repo
 
-Twelve commands. Each is a Markdown file with no code in it — the behaviour is entirely what the prose specifies.
+Eleven commands. Each is a Markdown file with no code in it — the behaviour is entirely what the prose specifies.
 
 | Command | What it does |
 |---|---|
@@ -95,7 +95,6 @@ Twelve commands. Each is a Markdown file with no code in it — the behaviour is
 | `/goal-review` | Quarterly reconciliation of Life Vision → Career Goal → Now Goal, with a promotion-readiness score |
 | `/horizon-scan` | Monthly outward scan; every signal gets exactly one verdict — Noise, Watch, or Act |
 | `/context-audit` | Shows every belief the system holds about me, with source and consumers; confirm, dispute, correct, retire, or delete |
-| `/interview` | Mock interview from a real job description, scored, with a model answer built from your own CV |
 | `/cv-job-match` | Role-fit analysis: gaps, pitch angle, what to fix before applying |
 | `/portfolio-capture` | Captures a win before the detail fades |
 

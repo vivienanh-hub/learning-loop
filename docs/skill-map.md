@@ -13,9 +13,8 @@ A single-table view of every skill in Learning Loop — what it does, its role i
 | `/calibrate` | System improver — monthly self-diagnosis and repair | Once a month: is the system still working? what's stale or broken? |
 | `/goal-review` | North Star checkpoint — quarterly reconciliation of goals | Quarterly or after a major life event: are your goals still right? |
 | `/context-audit` | Memory calibrator — updates the system's model of you | When your situation changes significantly, or when the Mentor feels stale |
-| `/interview` | Mock interviewer — graded, JD-aware, coaching feedback | Before any real interview or when preparing for a specific role |
 | `/cv-job-match` | Role-fit analyzer — matches your profile to a target JD | When evaluating a role before applying |
-| `/portfolio-capture` | Achievement logger — captures a win before the details fade | Right after something notable happens: strong interview, shipped feature, key decision |
+| `/portfolio-capture` | Achievement logger — captures a win before the details fade | Right after something notable happens: a shipped feature, a key decision, a problem solved |
 
 ---
 
@@ -26,7 +25,7 @@ Learning loop:
   /learn → /exam → /weekly-review (ledger) → /calibrate (health check)
 
 Career loop:
-  /horizon-scan → /goal-review → /mentor → /interview → /cv-job-match → /portfolio-capture
+  /horizon-scan → /goal-review → /mentor → /cv-job-match → /portfolio-capture
 
 Monthly loops:
   /horizon-scan (outward)
@@ -41,7 +40,6 @@ Quarterly:
 - **Have an idea to explore?** → `/lab`
 - **Want to learn something?** → `/learn`
 - **Want to test retention?** → `/exam [topic]`
-- **Preparing for an interview?** → `/interview [JD URL or #issue]`
 - **Evaluating a role?** → `/cv-job-match [JD URL]`
 - **Career question or feeling stuck?** → `/mentor`
 - **End of week?** → `/weekly-review`

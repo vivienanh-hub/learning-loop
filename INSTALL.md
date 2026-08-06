@@ -30,7 +30,7 @@ sed -i '' 's|YOUR_GITHUB_USERNAME/YOUR_REPO|your-username/your-repo|g' *.md   # 
 sed -i    's|YOUR_GITHUB_USERNAME/YOUR_REPO|your-username/your-repo|g' *.md   # Linux
 ```
 
-Nine of the twelve skills reference the repo this way — `/lab`, `/mentor`, `/learn`, `/exam`, `/weekly-review`, `/calibrate`, `/interview`, `/cv-job-match`, `/portfolio-capture`. Skip this step and each one fails on its first `gh` call. (`/context-audit`, `/goal-review`, and `/horizon-scan` are file-only and need no change.)
+Eight of the eleven skills reference the repo this way — `/lab`, `/mentor`, `/learn`, `/exam`, `/weekly-review`, `/calibrate`, `/cv-job-match`, `/portfolio-capture`. Skip this step and each one fails on its first `gh` call. (`/context-audit`, `/goal-review`, and `/horizon-scan` are file-only and need no change.)
 
 The automation scripts carry the same placeholder plus two more — see [automation/README.md](automation/README.md) step 1.
 
@@ -76,7 +76,7 @@ your-workspace/
 │   ├── feedback-loop.md
 │   └── memory-policy.md  ← copy from docs/memory-policy.md
 └── cv/
-    └── your_cv.tex        ← or .pdf, .md — update the path in cv-job-match.md and interview.md
+    └── your_cv.tex        ← or .pdf, .md — update the path in cv-job-match.md
 ```
 
 ### 5. Fill in the key files
@@ -96,7 +96,7 @@ your-workspace/
 [Your current concrete target: specific role/company type, salary, timeline]
 ```
 
-**`personal-professional-profile/career/experience.yaml`** — your work history. Used by the Mentor, the interview skill, and cv-job-match.
+**`personal-professional-profile/career/experience.yaml`** — your work history. Used by the Mentor and cv-job-match.
 
 **`.claude/memory/user_profile.md`** — how you learn, your background, your working style. Start with what you know about yourself and let the system refine it over time.
 
@@ -119,7 +119,7 @@ gh label create "model:haiku" --color "#22d3ee" --repo YOUR_GITHUB_USERNAME/YOUR
 gh label create "machine:yourname" --color "#94a3b8" --repo YOUR_GITHUB_USERNAME/YOUR_REPO
 ```
 
-Then copy the issue templates. `/lab` reads the default `Lab:` title as its rename trigger, and `/interview` reads the **Practice focus** and **Custom focus** fields — both misbehave without them:
+Then copy the issue templates. `/lab` reads the default `Lab:` title as its rename trigger and misbehaves without it:
 
 ```bash
 cp -r learning-loop/.github/ISSUE_TEMPLATE/ your-workspace/.github/ISSUE_TEMPLATE/

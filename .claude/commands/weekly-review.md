@@ -19,11 +19,7 @@ Run these queries to capture work that may not have a session log:
 ```bash
 # Everything touched this week (replace the date with the review week's Monday)
 gh issue list --repo YOUR_GITHUB_USERNAME/YOUR_REPO --search "updated:>=YYYY-MM-DD" --state all --limit 50 --json number,title,labels,updatedAt,state,closedAt
-# Targeted: interview prep
-gh issue list --repo YOUR_GITHUB_USERNAME/YOUR_REPO --search "Interview Practice" --state all --limit 20 --json number,title,labels,updatedAt,state
 ```
-
-For any interview practice issue updated in the past 7 days, read it to see what prep was done, the transcript, and outcome.
 
 Do not skip this step — exam and learn sessions run via skills create GitHub issues, not session logs.
 
