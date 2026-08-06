@@ -32,10 +32,20 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Slash-commands that are referenced on purpose but have no file here: either
 # they belong to Claude Code itself, or they are named in prose that explains
 # why they are absent. Keep this list short and justified.
+#
+# A workspace can add its own, one `/name  reason` per line, in
+# scripts/check-allow.txt — retired skills stay named in planning docs long
+# after the file goes, and that is correct, not rot.
 KNOWN_ABSENT = {
     "/model": "Claude Code builtin",
     "/article": "named in lab.md only to explain why the routing table was deleted",
 }
+
+# Dated evidence. These hold what was true when written and must not be
+# rewritten to match the present, so they are exempt from reference and
+# privacy checks. See docs/memory-policy.md — correction leaves an audit
+# trail rather than editing history.
+HISTORICAL = (".claude/memory", "journal")
 
 # Patterns that should never appear in a public instruction file.
 PRIVACY_PATTERNS = [
@@ -59,12 +69,32 @@ def rel(p):
     return os.path.relpath(p, ROOT)
 
 
-def walk(*exts, skip=(".git",)):
+def walk(*exts, skip=(".git",), historical=True):
+    """Yield files. historical=False omits dated-evidence directories."""
     for dirpath, dirnames, filenames in os.walk(ROOT):
         dirnames[:] = [d for d in dirnames if d not in skip]
+        if not historical and rel(dirpath).startswith(HISTORICAL):
+            continue
         for fn in filenames:
             if fn.endswith(exts):
                 yield os.path.join(dirpath, fn)
+
+
+def load_allowlist():
+    """Read scripts/check-allow.txt. `/name reason` allows a missing command;
+    `!check reason` disables a whole check (privacy is meant for repos that
+    will be public — a private workspace should switch it off deliberately)."""
+    allow, disabled = dict(KNOWN_ABSENT), {}
+    path = os.path.join(ROOT, "scripts", "check-allow.txt")
+    if os.path.exists(path):
+        for line in open(path):
+            line = line.split("#")[0].strip()
+            if not line:
+                continue
+            name, _, reason = line.partition(" ")
+            reason = reason.strip() or "set in scripts/check-allow.txt"
+            (disabled if name.startswith("!") else allow)[name.lstrip("!")] = reason
+    return allow, disabled
 
 
 def strip_fences(text):
@@ -122,16 +152,17 @@ def check_frontmatter(cmds):
 
 
 def check_commands(cmds):
+    allow, _ = load_allowlist()
     seen = {}
-    for path in walk(".md", ".yml", ".yaml"):
+    for path in walk(".md", ".yml", ".yaml", historical=False):
         text = strip_fences(open(path).read())
         for m in re.finditer(r"`(/[a-z][a-z0-9-]*)`", text):
             seen.setdefault(m.group(1), set()).add(rel(path))
     for ref, where in sorted(seen.items()):
         if ref[1:] in cmds:
             continue
-        if ref in KNOWN_ABSENT:
-            notes.append(f"{ref} — absent on purpose ({KNOWN_ABSENT[ref]})")
+        if ref in allow:
+            notes.append(f"{ref} — absent on purpose ({allow[ref]})")
             continue
         fail("commands", f"{ref} referenced in {', '.join(sorted(where))} but no such command")
 
@@ -203,7 +234,7 @@ def check_shell():
 
 
 def check_privacy():
-    for path in walk(".md", ".yml", ".yaml", ".sh"):
+    for path in walk(".md", ".yml", ".yaml", ".sh", historical=False):
         text = open(path, errors="replace").read()
         for pattern, label in PRIVACY_PATTERNS:
             for m in re.finditer(pattern, text):
@@ -220,13 +251,17 @@ def main():
         print("no .claude/commands found — is this a Learning Loop workspace?")
         return 1
 
+    _, disabled = load_allowlist()
     check_frontmatter(cmds)
     check_commands(cmds)
     check_links()
     check_templates(cmds)
     check_counts(cmds)
     check_shell()
-    check_privacy()
+    if "privacy" in disabled:
+        notes.append(f"privacy check disabled — {disabled['privacy']}")
+    else:
+        check_privacy()
 
     print(f"Learning Loop check — {len(cmds)} commands in {rel(os.path.join(ROOT, '.'))}\n")
     for n in notes:
