@@ -8,24 +8,6 @@ This repo is the system itself, published as a worked example of what it takes t
 
 ---
 
-## What it has actually done
-
-Numbers from my own instance, which is private. These describe activity, not outcomes — I can show that the loop ran, not that it made me smarter. The career side of the system is deliberately not reported here; it runs on personal data I don't publish.
-
-| | |
-|---|---|
-| Weekly reviews | 11 consecutive, W21–W31, no gaps |
-| Topics taught | 15 |
-| Exams sat | 11 |
-| Monthly field scans | 3 |
-| Quarterly goal reviews | 3 |
-| Memory records under the policy below | 39 |
-| Sessions logged as GitHub issues | 220 |
-
-The unbroken weekly-review streak is the number I care about. Everything else in the system is optional in any given week; that one is the forcing function, and it held through weeks when nothing else did.
-
----
-
 ## The problem it solves
 
 Learning systems don't fail because the teaching is bad. They fail because nothing ever checks. You study, you feel like you understood it, and no part of the process ever comes back to find out whether that was true. The same is true of career intent: goals get set once and then quietly stop matching what you're actually doing.
@@ -82,6 +64,22 @@ The failure mode of every personal system I've built before this one wasn't that
 
 ---
 
+## What running it surfaced
+
+A session count wouldn't tell you much. The useful evidence is the bug list — you don't accumulate six recurrences of the same failure across three fix attempts unless the thing is genuinely in daily use.
+
+Three findings that changed how I specify agent behaviour.
+
+**A prompt-level gate is not a fix.** Sessions were supposed to rename their own issue from a placeholder title. The instruction got reworded twice, moved to the top of the file, and finally backed by a stop hook — and it still failed six times, three of them in a row on the same morning. The cause was structural, not linguistic: these skills run through a headless watcher, and the hook only ever fired on interactive sessions, so it never saw them. What held was a deterministic check in bash, outside the model's attention entirely. If correctness depends on the model remembering something, it isn't specified. It's hoped for.
+
+**An evaluator with no ground truth will invent one.** `/exam` on a topic that had never been taught had no answer key to grade against. So it produced a plausible-looking rubric and graded against that — confidently, and with the same binary verdict it uses when the rubric is real. The fix was a teach-first pass: if there's no lesson on record, deliver the core concepts first, then examine only against what was just taught.
+
+**One threshold can't govern four different kinds of claim.** The first memory rule promoted any pattern seen three times into a durable belief. That collapsed facts I'd stated, events that happened, the system's interpretations of me, and decisions to change tutor behaviour into a single test. It meant a rough fortnight could harden into "you avoid applied work" and then get quoted back at me as though I'd said it. The current policy separates those and requires explicit confirmation for anything inferred. There's a [migration guide](docs/memory-policy-migration.md) because I had to migrate my own records.
+
+None of these are visible from reading the specs. They only show up when the thing runs unattended, against real work, for months.
+
+---
+
 ## What's in the repo
 
 Twelve commands. Each is a Markdown file with no code in it — the behaviour is entirely what the prose specifies.
@@ -106,8 +104,6 @@ Also here: [`docs/skill-map.md`](docs/skill-map.md) for routing, [`automation/`]
 ---
 
 ## What I got wrong
-
-**The memory rule was too blunt for the first two months.** The original version promoted any pattern seen three times into a durable belief. That collapsed four different things — facts I'd stated, events that happened, the system's interpretations of me, and decisions to change tutor behaviour — into one threshold. It meant a rough fortnight could harden into "you avoid applied work" and then get quoted back at me as though I'd said it. The current policy separates those and requires confirmation for anything inferred. There's a [migration guide](docs/memory-policy-migration.md) because I had to migrate my own records.
 
 **I built both halves at once.** The learning loop and the career loop went in together. I should have proven one closed before starting the other — the first six weeks had more surface area than evidence.
 
