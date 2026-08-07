@@ -20,3 +20,7 @@ journal/memory-effects.md
 # Environment
 .env
 .env.local
+
+# Python bytecode from running the checker tests
+__pycache__/
+*.pyc
