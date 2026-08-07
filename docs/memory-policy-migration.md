@@ -11,6 +11,7 @@ Earlier Learning Loop versions promoted any pattern seen in three sessions. That
 | A workflow failure needed recurrence | One reproduced, inspectable defect can justify a procedural correction |
 | Evidence and tutoring rule could share one file | Evidence, inference, and intervention stay linked but distinct |
 | Memories stayed active indefinitely | Confirmed memories have review or expiry rules and observed effects |
+| Founding records were written freehand at setup | Founding records are admitted explicitly, carry the same metadata as everything else, and review at 90 days |
 
 ## Incremental migration
 
@@ -23,6 +24,7 @@ Do not rewrite every memory file at once.
 5. Treat unsupported behavioural claims as candidates until confirmed.
 6. Retire or correct contradicted memories; do not erase source episodes unless deletion is requested.
 7. Use `/context-audit` to review the highest-impact memories first.
+8. Bring the founding records up first — `user_profile.md` and the goal cascade. They were written before there was a policy to write them under, they are read by every tutor, and they are the cheapest records to migrate because you can confirm them from memory rather than from evidence.
 
 ## Migration priority
 

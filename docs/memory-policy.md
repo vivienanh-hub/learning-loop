@@ -25,12 +25,22 @@ An inference links to evidence. An intervention links to the inference or defect
 |---|---|---|
 | Explicit fact, goal, constraint, or preference | Save when stated or confirmed by the learner; include provenance and date | At its stated horizon, on contradiction, or within 90 days for changeable facts |
 | Session event | Save as episodic evidence only | Follow the journal's normal lifecycle |
-| Behavioural inference | Create a candidate after three **independent** episodes; require learner confirmation before broad use | Review within 60 days; expire within 90 days unless reconfirmed |
+| Behavioural inference | Create a candidate after three **independent** episodes within the last 30 days; require learner confirmation before broad use | Review within 60 days; expire within 90 days unless reconfirmed |
 | Workflow defect | One reproduced incident may justify a procedural correction when the failure and fix are inspectable | Review after the next material use |
 | Intervention | Store separately and state the expected effect | Evaluate after each material use; review after three uses or 30 days |
 | Sensitive psychological, health, identity, or similarly high-impact inference | Never promote automatically; store only when the learner explicitly confirms the exact claim and intended use | Review within 30 days; default to expiry |
 
 Independent episodes must come from distinct events. Copies, summaries, or multiple agents referring to the same original event count once.
+
+## Founding records
+
+Some records exist before the system has observed anything: the goal cascade in `system/feedback-loop.md`, the learner profile in `.claude/memory/user_profile.md`, and the work history in `personal-professional-profile/career/experience.yaml`. Every tutor reads at least one of them before it speaks, so they are durable claims and this policy governs them like any other. [The setup guide](memory-setup.md) shows the shape each one takes.
+
+They are admitted under the explicit-fact rule — the learner states them, so they persist immediately. What they may not do is skip the metadata. A founding record carries `claim_type: explicit`, `status: confirmed`, a creation date, and `sources: self-declared at setup`. Naming the provenance that way is the point: it keeps a fact the learner asserted about themselves distinguishable from one the system worked out later, which is the distinction the rest of this policy is built on. Do not cite a source the system has no mechanism to produce.
+
+Founding records describe changeable facts, so they review within 90 days like any other. A goal cascade nobody has revisited is not evidence of a stable goal; it is an unreviewed record, and `/goal-review` should treat it as one.
+
+Genesis admits only what the learner declares about themselves at setup. It is not a route for the system's first impressions of them, and a record created any other way does not become founding by being early.
 
 ## Lifecycle
 

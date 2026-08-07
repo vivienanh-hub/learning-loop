@@ -79,6 +79,8 @@ your-workspace/
 
 ### 5. Fill in the key files
 
+These are the founding records — the things every tutor reads before it says anything. The memory policy admits them under its [Founding records](docs/memory-policy.md#founding-records) rule: they persist immediately because you stated them, but they carry the same metadata as everything else, and they review in 90 days. [docs/memory-setup.md](docs/memory-setup.md) gives the exact shape of each file below; copy from there rather than freehanding them.
+
 **`system/feedback-loop.md`** — your goal cascade. The skills read this constantly to keep advice anchored. Minimum structure:
 
 ```markdown
@@ -92,11 +94,16 @@ your-workspace/
 
 ## Now Goal
 [Your current concrete target: specific role/company type, salary, timeline]
+
+---
+Last reviewed: YYYY-MM-DD · Review by: YYYY-MM-DD (90 days)
 ```
+
+The two dates are load-bearing. `/goal-review` reconciles this file quarterly, and without a review date it cannot tell a goal you still hold from one you set once and stopped looking at.
 
 **`personal-professional-profile/career/experience.yaml`** — your work history. Used by the Mentor, /lab, /portfolio-capture, /horizon-scan, and /calibrate.
 
-**`.claude/memory/user_profile.md`** — how you learn, your background, your working style. Start with what you know about yourself and let the system refine it over time.
+**`.claude/memory/user_profile.md`** — how you learn, your background, your working style. Use the frontmatter block in [docs/memory-setup.md](docs/memory-setup.md#claudememoryuser_profilemd): `claim_type: explicit`, `status: confirmed`, `sources: self-declared at setup`, and a `review_by` date 90 days out. The system refines the body over time; the metadata is what stops your own words being mistaken later for something it inferred about you.
 
 **`system/memory-policy.md`** — copy [docs/memory-policy.md](docs/memory-policy.md) here. It governs what the skills may remember, how inferences earn confirmation, and how memories expire or are corrected.
 

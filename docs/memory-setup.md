@@ -44,7 +44,7 @@ metadata:
   review_by: YYYY-MM-DD
   expires: null
   sources:
-    - onboarding
+    - self-declared at setup
   consumers:
     - mentor
     - lab
@@ -76,7 +76,7 @@ metadata:
   review_by: YYYY-MM-DD
   expires: YYYY-MM-DD | null
   sources:
-    - onboarding
+    - self-declared at setup
   consumers:
     - mentor
 ---

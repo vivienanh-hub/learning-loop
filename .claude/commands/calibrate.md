@@ -72,7 +72,7 @@ Cross-reference "Evidence worth saving" sections in session logs against `achiev
 Collect all "Open threads" items from the last 30 days. Identify any that never appeared in a subsequent session log.
 
 **3c. Behavioural memory candidates**
-Apply `system/memory-policy.md`. A behavioural inference is candidate-eligible only after three independent episodes in the last 30 days; repeated summaries count once. Flag candidates for learner confirmation, not automatic activation:
+Apply the behavioural-inference admission rule in `system/memory-policy.md` — read the thresholds there rather than assuming them, and apply its independence rule, under which repeated summaries of one event count once. Flag candidates for learner confirmation, not automatic activation:
 - `[candidate?]` — "[Pattern description]" — independent episodes: [dates/paths] — proposed expiry: [date] — consumers: [commands]
 
 ---
@@ -90,10 +90,10 @@ Produce the system diagnosis. If there's nothing to say, write "Nothing this cyc
 - Which memory rules are contradicted by recent session behavior?
 - Which are stale — true once, possibly no longer?
 - Which confirmed memories are expired, overdue for review, missing provenance, or missing consumers?
-- Which candidates lack three independent episodes or learner confirmation?
+- Which candidates lack the episodes or the learner confirmation the policy requires?
 - Which memories produced `irrelevant`, `stale`, or `harmful` effects in `journal/memory-effects.md`?
 - Which interventions are combined with their evidence or inference instead of stored separately?
-- Which missing behavioural candidates have three independent episodes and no record?
+- Which behavioural patterns already meet the policy's admission rule but have no record?
 
 **Workflow gaps**
 - What does the user do manually, every month or more, that has no skill? Name it, don't editorialize.
