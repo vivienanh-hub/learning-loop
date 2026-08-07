@@ -9,12 +9,17 @@ months. This is the substitute for a type checker.
 Each check exists because the corresponding bug actually shipped:
 
   frontmatter   an unquoted `argument-hint: [topic] | apply ...` parses as a
-                YAML flow sequence and silently breaks the whole block
+                YAML flow sequence and silently breaks the whole block; a
+                duplicate key is resolved last-one-wins and hides the other
   commands      /lab routed to /article, which never existed
   links         relative links rot whenever a doc moves or a skill is removed
   templates     eight templates still seeded `Sheldon: ` after the rename, so
                 new issues got a prefix no skill matched on
   counts        INSTALL claimed a skill count that stopped being true
+  threshold     a blog draft compressed "three independent episodes" into
+                "three or more sessions" — the same number, a different rule
+  orphans       docs/memory-setup.md specified the founding records correctly
+                and nothing linked to it, so INSTALL contradicted it unnoticed
   shell         a bad edit to the watcher isn't visible until it runs at 3am
   privacy       a personal city survived in a shipped instruction example
 
@@ -46,6 +51,12 @@ KNOWN_ABSENT = {
 # privacy checks. See docs/memory-policy.md — correction leaves an audit
 # trail rather than editing history.
 HISTORICAL = (".claude/memory", "journal")
+
+# The memory policy is the source of the one threshold everything else
+# restates. A published subset carries it in docs/; the private workspace it
+# was extracted from carries it in system/. Same file, same rules, and this
+# script has to run in both.
+POLICY_LOCATIONS = ("docs/memory-policy.md", "system/memory-policy.md")
 
 # Patterns that should never appear in a public instruction file.
 PRIVACY_PATTERNS = [
@@ -138,7 +149,13 @@ def check_frontmatter(cmds):
                 fail("frontmatter", f"{rel(path)}: not a key/value line -> {line!r}")
                 continue
             k, v = line.split(":", 1)
-            keys[k.strip()] = v.strip()
+            k = k.strip()
+            # A repeated key is silently resolved by every YAML parser — last
+            # one wins — so a stale line can sit above a corrected one doing
+            # nothing visible until the order changes.
+            if k in keys:
+                fail("frontmatter", f"{rel(path)}: duplicate key `{k}` — one of them is dead")
+            keys[k] = v.strip()
         if not keys.get("description"):
             fail("frontmatter", f"{rel(path)}: missing description (it is the / menu label)")
         for k, v in keys.items():
@@ -208,22 +225,127 @@ def check_templates(cmds):
 
 
 def check_counts(cmds):
-    path = os.path.join(ROOT, "INSTALL.md")
-    if not os.path.exists(path):
+    install = os.path.join(ROOT, "INSTALL.md")
+    if os.path.exists(install):
+        text = open(install).read()
+        m = re.search(r"(\w+) of the (\w+) skills reference the repo", text)
+        if not m:
+            notes.append("INSTALL has no skill-count sentence — skipped")
+        else:
+            claimed_sub = WORDS.get(m.group(1).lower())
+            claimed_tot = WORDS.get(m.group(2).lower())
+            actual_tot = len(cmds)
+            actual_sub = sum(1 for p in cmds.values()
+                             if "YOUR_GITHUB_USERNAME" in open(p).read())
+            if claimed_tot != actual_tot:
+                fail("counts", f"INSTALL says {m.group(2)} skills; there are {actual_tot}")
+            if claimed_sub != actual_sub:
+                fail("counts", f"INSTALL says {m.group(1)} use the repo placeholder; "
+                               f"{actual_sub} do")
+
+    # The README opens by inventorying the repo. Removing /cv-job-match took the
+    # command count down and left the script count beside it untouched, so the
+    # first substantive line of the repo was wrong for four commits.
+    readme = os.path.join(ROOT, "README.md")
+    if not os.path.exists(readme):
         return
-    text = open(path).read()
-    m = re.search(r"(\w+) of the (\w+) skills reference the repo", text)
+    m = re.search(r"(\w+) slash commands, (\w+) shell scripts", open(readme).read())
     if not m:
-        notes.append("INSTALL has no skill-count sentence — skipped")
+        notes.append("README has no inventory sentence — skipped")
         return
-    claimed_sub, claimed_tot = WORDS.get(m.group(1).lower()), WORDS.get(m.group(2).lower())
-    actual_tot = len(cmds)
-    actual_sub = sum(1 for p in cmds.values() if "YOUR_GITHUB_USERNAME" in open(p).read())
-    if claimed_tot != actual_tot:
-        fail("counts", f"INSTALL says {m.group(2)} skills; there are {actual_tot}")
-    if claimed_sub != actual_sub:
-        fail("counts", f"INSTALL says {m.group(1)} use the repo placeholder; "
-                       f"{actual_sub} do")
+    for claimed, actual, label in (
+        (m.group(1), len(cmds), "slash commands"),
+        (m.group(2), sum(1 for _ in walk(".sh")), "shell scripts"),
+    ):
+        if WORDS.get(claimed.lower(), claimed) != actual:
+            fail("counts", f"README says {claimed} {label}; there are {actual}")
+
+
+def check_threshold():
+    """The memory threshold is stated in prose in several places on purpose —
+    the README has to say the number, and so does a blog post. What must not
+    happen is a restatement drifting off the policy: "three or more sessions"
+    is the same number and a materially weaker rule, because it drops the
+    independence requirement that stops one bad day counting three times.
+
+    So this reads the canonical rule out of docs/memory-policy.md and checks
+    every restatement against it, rather than banning restatement."""
+    policy = next((p for p in (os.path.join(ROOT, *loc.split("/"))
+                               for loc in POLICY_LOCATIONS) if os.path.exists(p)), None)
+    if policy is None:
+        notes.append("no memory policy found — threshold check skipped")
+        return
+    canon = re.search(r"(\w+)\s+\*\*independent\*\*\s+episodes", open(policy).read())
+    if not canon:
+        fail("threshold", f"{rel(policy)} no longer states 'N **independent** "
+                          f"episodes' — nothing else can be checked against it")
+        return
+    want = canon.group(1).lower()
+
+    # A restatement is a count of things that could promote a claim about the
+    # learner. Two narrowings keep this off ordinary prose. The count must be
+    # introduced by a word that makes it a requirement ("after three
+    # episodes"), so "220 sessions logged as issues" in a list of activity
+    # totals is not a threshold just because the sentence also says "memory".
+    # And the line must already be about promotion, so "three attempts" in
+    # exam.md and "three chunks" in learn.md never come near it.
+    trigger = (r"(?:after|across|over|within|in|needs?|requires?|takes?|"
+               r"seen\s+in|shows?\s+up\s+(?:in|across)|promoted\s+(?:after|from))")
+    counted = r"(?:episodes?|sessions?|occurrences?|instances?|observations?)"
+    restated = re.compile(
+        trigger + r"\s+\b(" + "|".join(WORDS) + r"|\d+)\b"
+        r"((?:\s+(?:or\s+more|\*{0,2}independent\*{0,2}|separate|distinct))*)\s+"
+        + counted, re.I)
+    context = re.compile(r"promot|candidate|durable|infer|pattern memory|memory", re.I)
+
+    for path in walk(".md", historical=False):
+        if os.path.abspath(path) == os.path.abspath(policy):
+            continue
+        for lineno, line in enumerate(strip_fences(open(path).read()).split("\n"), 1):
+            if not context.search(line):
+                continue
+            for m in restated.finditer(line):
+                num, qualifiers = m.group(1).lower(), m.group(2).lower()
+                # Describing the rule this policy replaced is not drift, and a
+                # tracking note about fixing a stale restatement elsewhere has
+                # to be able to quote the stale wording.
+                if re.search(r"\b(was|were|used to|earlier|before|first|old|superseded|"
+                             r"replaced|former|legacy|deprecated|no longer)\b", line, re.I):
+                    continue
+                # Nor is naming a count that is explicitly not enough yet —
+                # "only 2 independent episodes" is the rule working, not drift.
+                if re.search(r"\b(only|not eligible|ineligible|insufficient|fewer|"
+                             r"not yet|does not count|short of|no more than)\b", line, re.I):
+                    continue
+                if num != want:
+                    fail("threshold",
+                         f"{rel(path)}:{lineno}: says '{m.group(0).strip()}' but the "
+                         f"policy says {want} — one of them is wrong")
+                elif "independent" not in qualifiers:
+                    fail("threshold",
+                         f"{rel(path)}:{lineno}: '{m.group(0).strip()}' drops "
+                         f"'independent'; without it, one event summarised twice counts twice")
+
+
+def check_orphans():
+    """A doc nothing links to cannot be found, and cannot be corrected when the
+    file that contradicts it changes. Anything under docs/ or examples/ must be
+    reachable from at least one other file."""
+    linked = set()
+    for path in walk(".md"):
+        base = os.path.dirname(path)
+        for m in re.finditer(r"\[[^\]]*\]\(([^)]+)\)", strip_fences(open(path).read())):
+            target = m.group(1).split("#")[0].strip()
+            if not target or target.startswith(("http://", "https://", "mailto:")):
+                continue
+            resolved = os.path.normpath(os.path.join(base, target))
+            if resolved != os.path.abspath(path):
+                linked.add(resolved)
+    for path in walk(".md", historical=False):
+        if rel(path).split(os.sep)[0] not in ("docs", "examples"):
+            continue
+        if os.path.abspath(path) not in linked:
+            fail("orphans", f"{rel(path)} is linked from nowhere — no reader will find it")
 
 
 def check_shell():
@@ -257,6 +379,8 @@ def main():
     check_links()
     check_templates(cmds)
     check_counts(cmds)
+    check_threshold()
+    check_orphans()
     check_shell()
     if "privacy" in disabled:
         notes.append(f"privacy check disabled — {disabled['privacy']}")

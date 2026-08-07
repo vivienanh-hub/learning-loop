@@ -2,7 +2,7 @@
 
 The learning and career system I run on myself, built on [Claude Code](https://claude.ai/code).
 
-Ten slash commands, four shell scripts, and a memory policy. Nothing compiles — the behaviour is entirely Markdown instructions that Claude reads and follows, with GitHub Issues as the session log.
+Ten slash commands, five shell scripts, and a memory policy. Nothing compiles — the behaviour is entirely Markdown instructions that Claude reads and follows, with GitHub Issues as the session log.
 
 I've written about why it exists and what it turned out to know about me: **[In order to help me learn, it had to understand me well](https://vivienanh-hub.github.io/2026-08-02-learning-loop/)**. This README is the technical entry point.
 
